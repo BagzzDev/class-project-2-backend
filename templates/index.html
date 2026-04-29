@@ -1270,9 +1270,11 @@
             <div class="videos">
               <div class="slider-for-2 video-ft">
                 <!-- DB -->
+                {% if trailer %}
                 <div>
-                  <iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/1Q8fG0TtVAY"></iframe>
+                  <iframe src="" class="item-video" data-src="{{ trailer.trailer_URL }}"></iframe>
                 </div>
+                {% endif %}
               </div>
               <div class="slider-nav-2 thumb-ft">
                 <!-- DB -->
