@@ -68,7 +68,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
             'libraries': {
-                'string_extras': 'movies.templatetags.string_extra',
+                'string_extras': 'movies.templatetags.string_extras',
             },
         },
     },
