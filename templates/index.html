@@ -1639,7 +1639,7 @@
               <!-- DB -->
               {% if news_banner_ad %}
               <img
-                src="{{ news_banner_ad.img_src }}"
+                src="{% static news_banner_ad.img_src %}"
                 alt=""
                 width="{{ news_banner_ad.img_width }}"
                 height="{{ news_banner_ad.img_height }}"
