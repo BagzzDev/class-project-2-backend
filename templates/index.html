@@ -346,21 +346,25 @@
           </div>
           <div class="slick-multiItemSlider">
             <!--  DB  -->
-            {% for movieItem in movie_tvs %}
+            {% for movieItem in slider %}
             <div class="movie-item">
               <div class="mv-img">
-                <a href="{{ movieItem.anchor_link }}"
+                <a href="{{ movieItem.anchor_url }}"
                   ><img
-                    src="{% static movieItem.img_src %}"
+                    src="{% static movieItem.image_src %}"
                     alt=""
-                    width="{{ movieItem.img_width }}"
-                    height="{{ movieItem.img_height }}"
+                    width="{{ movieItem.imgage_width }}"
+                    height="{{ movieItem.imgage_height }}"
                 /></a>
               </div>
               <div class="title-in">
                 <div class="cate">
-                  <span class="{{ movieItem.type}}"
-                    ><a href="{{ movieItem.anchor_link}}"
+                  <span class=" {% if movieItem.movie_genre == 'Sci-fi' %}blue
+                                {% elif movieItem.movie_genre == 'action' %}yell
+                                {% elif movieItem.movie_genre == 'comedy' %}green
+                                {% else %}orange
+                                {% endif %}"
+                    ><a href="{{ movieItem.anchor_url }}"
                       >{{ movieItem.movie_genre }}</a
                     ></span
                   >
