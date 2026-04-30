@@ -1,4 +1,5 @@
 {% load static %}
+{% load string_extras %}
 <!doctype html>
 <!--[if IE 7]>
 <html class="ie ie7 no-js" lang="en-US">
@@ -349,30 +350,32 @@
             {% for movieItem in slider %}
             <div class="movie-item">
               <div class="mv-img">
-                <a href="{{ movieItem.anchor_url }}"
-                  ><img
-                    src="{% static movieItem.image_src %}"
-                    alt=""
-                    width="{{ movieItem.imgage_width }}"
-                    height="{{ movieItem.imgage_height }}"
-                /></a>
+                <a href="{{ movieItem.anchor_url }}">
+                  <img src="{% static movieItem.image_src %}" 
+                  alt=""
+                  width="{{ movieItem.imgage_width }}"
+                  height="{{ movieItem.imgage_height }}">
+                </a>
               </div>
               <div class="title-in">
                 <div class="cate">
-                  <span class=" {% if movieItem.movie_genre == 'Sci-fi' %}blue
-                                {% elif movieItem.movie_genre == 'action' %}yell
-                                {% elif movieItem.movie_genre == 'comedy' %}green
-                                {% else %}orange
-                                {% endif %}"
-                    ><a href="{{ movieItem.anchor_url }}"
-                      >{{ movieItem.movie_genre }}</a
-                    ></span
-                  >
+                  {% for genre in movieItem.movie_genre|lower|split:", " %}
+                    {% if genre == "sci-fi" %}
+                      <span class="blue"><a href="#">{{ genre }}</a></span>
+                    {% elif genre == "action" %}
+                      <span class="yell"><a href="#">{{ genre }}</a></span>
+                    {% elif genre == "comedy" %}
+                      <span class="green"><a href="#">{{ genre }}</a></span>
+                    {% elif genre == "advanture" %}
+                      <span class="orange"><a href="#">{{ genre }}</a></span>
+                    {% endif %}
+                  {% endfor %}
                 </div>
-                <h6><a href="#">{{ movieItem.movie_title }}</a></h6>
+                <h6>
+                  <a href="{{ movieItem.anchor_url }}">{{ movieItem.movie_title }}</a>
+                </h6>
                 <p>
-                  <i class="ion-android-star"></i
-                  ><span>{{ movieItem.lower_rating }}</span> / {{ movieItem.upper_rating }}
+                  <i class="ion-android-star"></i><span>{{ movieItem.lower_rating }}</span> /{{ movieItem.upper_rating }}
                 </p>
               </div>
             </div>
@@ -1537,7 +1540,7 @@
                 <!-- DB -->
                 {% if sidebar_ad %}
                 <img
-                  src="{{ sidebar_ad.img_src }}"
+                  src="{% static sidebar_ad.img_src %}"
                   alt="This is an ad"
                   width="{{ sidebar_ad.img_width }}"
                   height="{{ sidebar_ad.img_height }}"
