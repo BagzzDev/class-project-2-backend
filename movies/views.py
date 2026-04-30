@@ -4,7 +4,8 @@ from .models import (
     SocialLink,
     Tweet,
     Advertisement,
-    Trailer
+    Trailer,
+    MovieTV
 )
 
 
@@ -12,6 +13,7 @@ def index(request):
     """Render the homepage index."""
     social_links = SocialLink.objects.all()
     tweets = Tweet.objects.all()
+    movie_tvs = MovieTV.objects.all()
     sidebar_ad = Advertisement.objects.filter(section='sidebar').first()
     news_banner_ad = Advertisement.objects.filter(section='latestnews').first()
     trailer = Trailer.objects.first()
@@ -19,8 +21,10 @@ def index(request):
     context = {
         'social_links': social_links,
         'tweets': tweets,
+        'movie_tvs': movie_tvs,
         'sidebar_ad': sidebar_ad,
         'news_banner_ad': news_banner_ad,
         'trailer': trailer,
     }
     return render(request, 'index.html', context)
+
