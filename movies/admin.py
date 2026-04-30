@@ -1,5 +1,16 @@
 from django.contrib import admin
-from .models import SocialLink, Tweet, Slider, Advertisement, Trailer, TrailerItem, Celebrity, News, MovieTheater, MovieTV
+from .models import (
+    SocialLink,
+    Tweet,
+    Slider,
+    Advertisement,
+    Trailer,
+    TrailerItem,
+    Celebrity,
+    News,
+    MovieTheater,
+    MovieTV
+)
 
 # Register your models here.
 admin.site.register(SocialLink)
