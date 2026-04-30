@@ -368,8 +368,7 @@
                 <h6><a href="#">{{ movieItem.movie_title }}</a></h6>
                 <p>
                   <i class="ion-android-star"></i
-                  ><span>{{ movieItem.lower_rating }}</span> /{{
-                  movieItem.upper_rating }}
+                  ><span>{{ movieItem.lower_rating }}</span> / {{ movieItem.upper_rating }}
                 </p>
               </div>
             </div>
@@ -1535,7 +1534,7 @@
                 {% if sidebar_ad %}
                 <img
                   src="{{ sidebar_ad.img_src }}"
-                  alt=""
+                  alt="This is an ad"
                   width="{{ sidebar_ad.img_width }}"
                   height="{{ sidebar_ad.img_height }}"
                 />
@@ -1594,98 +1593,30 @@
                     src=""
                     class="item-video"
                     data-src="{{ trailer.trailer_URL }}"
+                    referrerpolicy="strict-origin-when-cross-origin"
                   ></iframe>
                 </div>
                 {% endif %}
               </div>
               <div class="slider-nav-2 thumb-ft">
                 <!-- DB -->
+                 {% for item in trailer_items %}
                 <div class="item">
                   <div class="trailer-img">
                     <img
-                      src="images/uploads/trailer7.jpg"
-                      alt="photo by Barn Images"
-                      width="4096"
-                      height="2737"
+                      src="static/{{ item.img_src }}"
+                      alt="{{ item.img_alt}}"
+                      width="{{ item.img_width }}"
+                      height="{{ item.img_height }}"
                     />
                   </div>
                   <div class="trailer-infor">
-                    <h4 class="desc">Wonder Woman</h4>
-                    <p>2:30</p>
+                    <h4 class="desc">{{ item.description}}</h4>
+                    <p>{{ item.duration }}</p>
                   </div>
                 </div>
-                <div class="item">
-                  <div class="trailer-img">
-                    <img
-                      src="images/uploads/trailer2.jpg"
-                      alt="photo by Barn Images"
-                      width="350"
-                      height="200"
-                    />
-                  </div>
-                  <div class="trailer-infor">
-                    <h4 class="desc">Oblivion: Official Teaser Trailer</h4>
-                    <p>2:37</p>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="trailer-img">
-                    <img
-                      src="images/uploads/trailer6.jpg"
-                      alt="photo by Joshua Earle"
-                    />
-                  </div>
-                  <div class="trailer-infor">
-                    <h4 class="desc">Exclusive Interview: Skull Island</h4>
-                    <p>2:44</p>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="trailer-img">
-                    <img
-                      src="images/uploads/trailer3.png"
-                      alt="photo by Alexander Dimitrov"
-                      width="100"
-                      height="56"
-                    />
-                  </div>
-                  <div class="trailer-infor">
-                    <h4 class="desc">
-                      Logan: Director James Mangold Interview
-                    </h4>
-                    <p>2:43</p>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="trailer-img">
-                    <img
-                      src="images/uploads/trailer4.png"
-                      alt="photo by Wojciech Szaturski"
-                      width="100"
-                      height="56"
-                    />
-                  </div>
-                  <div class="trailer-infor">
-                    <h4 class="desc">
-                      Beauty and the Beast: Official Teaser Trailer 2
-                    </h4>
-                    <p>2: 32</p>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="trailer-img">
-                    <img
-                      src="images/uploads/trailer5.jpg"
-                      alt="photo by Wojciech Szaturski"
-                      width="360"
-                      height="189"
-                    />
-                  </div>
-                  <div class="trailer-infor">
-                    <h4 class="desc">Fast&Furious 8</h4>
-                    <p>3:11</p>
-                  </div>
-                </div>
+                {% endfor %}
+           
               </div>
             </div>
           </div>
@@ -1721,7 +1652,8 @@
                       <img
                         src="{% static featured_news.img_src %}"
                         alt="{{ featured_news.img_alt }}"
-                        style="width: {{ featured_news.img_width }}px; height: {{ featured_news.img_height }}px;"
+                        width="{{ featured_news.img_width }}"
+                        height="{{ featured_news.img_height }}"
                       />
                       <div class="blog-it-infor">
                         <!-- DB -->
