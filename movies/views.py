@@ -5,6 +5,7 @@ from .models import (
     Tweet,
     Advertisement,
     Trailer,
+    TrailerItem,
     MovieTV,
     Celebrity,
     News
@@ -19,6 +20,7 @@ def index(request):
     sidebar_ad = Advertisement.objects.filter(section='sidebar').first()
     news_banner_ad = Advertisement.objects.filter(section='latestnews').first()
     trailer = Trailer.objects.first()
+    trailer_items = TrailerItem.objects.all()
     celebrities = Celebrity.objects.all()[:4]
     featured_news = News.objects.filter(section='featured').first()
     more_news = News.objects.filter(section='more').order_by('-id')[:2] # sort newest records first then take 2
@@ -30,6 +32,7 @@ def index(request):
         'sidebar_ad': sidebar_ad,
         'news_banner_ad': news_banner_ad,
         'trailer': trailer,
+        'trailer_items': trailer_items,
         'celebrities': celebrities,
         'featured_news': featured_news,
         'more_news': more_news,
