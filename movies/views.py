@@ -29,6 +29,8 @@ def index(request):
     movietheater_popular = MovieTheater.objects.filter(type='popular')
     movietheater_comingsoon = MovieTheater.objects.filter(type='coming-soon')
 
+    popular_tv = MovieTV.objects.filter(type="popular")
+    coming_soon_tv = MovieTV.objects.filter(type="coming-soon")
     context = {
         'social_links': social_links,
         'tweets': tweets,
@@ -42,6 +44,9 @@ def index(request):
         'more_news': more_news,
         'movietv_popular': movietheater_popular,
         'movietv_comingsoon': movietheater_comingsoon,
+        'popular_tv' : popular_tv,
+        'coming_soon_tv' : coming_soon_tv,
+
 
     }
     return render(request, 'index.html', context)
