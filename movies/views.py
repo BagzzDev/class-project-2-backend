@@ -25,7 +25,8 @@ def index(request):
     celebrities = Celebrity.objects.all()[:4]
     featured_news = News.objects.filter(section='featured').first()
     more_news = News.objects.filter(section='more').order_by('-id')[:2] # sort newest records first then take 2
-
+    popular_tv = MovieTV.objects.filter(type="popular")
+    coming_soon_tv = MovieTV.objects.filter(type="coming-soon")
     context = {
         'social_links': social_links,
         'tweets': tweets,
@@ -37,6 +38,9 @@ def index(request):
         'celebrities': celebrities,
         'featured_news': featured_news,
         'more_news': more_news,
+        'popular_tv' : popular_tv,
+        'coming_soon_tv' : coming_soon_tv,
+
 
     }
     return render(request, 'index.html', context)
