@@ -50,3 +50,6 @@ def index(request):
 
     }
     return render(request, 'index.html', context)
+
+def movie_single(request):
+    return render(request, 'moviesingle.html')
