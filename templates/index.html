@@ -351,28 +351,31 @@
             <div class="movie-item">
               <div class="mv-img">
                 <a href="{{ movieItem.anchor_url }}">
-                  <img src="{% static movieItem.image_src %}" 
-                  alt=""
-                  width="{{ movieItem.imgage_width }}"
-                  height="{{ movieItem.imgage_height }}">
+                  <img
+                    src="{% static movieItem.image_src %}"
+                    alt=""
+                    width="{{ movieItem.image_width }}"
+                    height="{{ movieItem.image_height }}"
+                  />
                 </a>
               </div>
               <div class="title-in">
                 <div class="cate">
                   {% for genre in movieItem.movie_genre|lower|split:", " %}
-                    {% if genre == "sci-fi" %}
-                      <span class="blue"><a href="#">{{ genre }}</a></span>
-                    {% elif genre == "action" %}
-                      <span class="yell"><a href="#">{{ genre }}</a></span>
-                    {% elif genre == "comedy" %}
-                      <span class="green"><a href="#">{{ genre }}</a></span>
-                    {% elif genre == "advanture" %}
-                      <span class="orange"><a href="#">{{ genre }}</a></span>
-                    {% endif %}
-                  {% endfor %}
+                  {% if genre == "sci-fi" %}
+                  <span class="blue"><a href="#">{{ genre }}</a></span>
+                  {% elif genre == "action" %}
+                  <span class="yell"><a href="#">{{ genre }}</a></span>
+                  {% elif genre == "comedy" %}
+                  <span class="green"><a href="#">{{ genre }}</a></span>
+                  {% elif genre == "adventure" %}
+                  <span class="orange"><a href="#">{{ genre }}</a></span>
+                  {% endif %} {% endfor %}
                 </div>
                 <h6>
-                  <a href="{{ movieItem.anchor_url }}">{{ movieItem.movie_title }}</a>
+                  <a href="{{ movieItem.anchor_url }}"
+                    >{{ movieItem.movie_title }}</a
+                  >
                 </h6>
                 <p>
                   <i class="ion-android-star"></i><span>{{ movieItem.lower_rating }}</span> /{{ movieItem.upper_rating }}
@@ -416,16 +419,19 @@
                             />
                           </div>
                           <div class="hvr-inner">
-                            <a href="{% url movieItem.anchor_url %}">
+                            <a href="{% url 'movie_single' %}">
                               Read more
                               <i class="ion-android-arrow-dropright"></i>
                             </a>
                           </div>
                           <div class="title-in">
-                            <h6><a href="{{ movieItem.anchor_url}}">{{ movieItem.movie_title }}</a></h6>
+                            <h6>
+                              <a href="{{ movieItem.anchor_url}}"
+                                >{{ movieItem.movie_title }}</a
+                              >
+                            </h6>
                             <p>
-                              <i class="ion-android-star"></i
-                              ><span>{{ movieItem.lower_rating }}</span> /{{ movieItem.upper_rating }}
+                              <i class="ion-android-star"></i><span>{{ movieItem.lower_rating }}</span> /{{ movieItem.upper_rating }}
                             </p>
                           </div>
                         </div>
@@ -450,16 +456,19 @@
                             />
                           </div>
                           <div class="hvr-inner">
-                            <a href="{% url movieItem.anchor_url %}">
+                            <a href="{% url 'movie_single' %}">
                               Read more
                               <i class="ion-android-arrow-dropright"></i>
                             </a>
                           </div>
                           <div class="title-in">
-                            <h6><a href="{{ movieItem.anchor_url}}">{{ movieItem.movie_title }}</a></h6>
+                            <h6>
+                              <a href="{{ movieItem.anchor_url}}"
+                                >{{ movieItem.movie_title }}</a
+                              >
+                            </h6>
                             <p>
-                              <i class="ion-android-star"></i
-                              ><span>{{ movieItem.lower_rating }}</span> /{{ movieItem.upper_rating }}
+                              <i class="ion-android-star"></i><span>{{ movieItem.lower_rating }}</span> /{{ movieItem.upper_rating }}
                             </p>
                           </div>
                         </div>
@@ -486,7 +495,7 @@
                   <div class="row">
                     <div class="slick-multiItem">
                       <!--  DB  -->
-                        {% for popular in popular_tv %}
+                      {% for popular in popular_tv %}
                       <div class="slide-it">
                         <div class="movie-item">
                           <div class="mv-img">
@@ -498,7 +507,7 @@
                             />
                           </div>
                           <div class="hvr-inner">
-                            <a href="{% url popular.anchor_url %}">
+                            <a href="{% url 'movie_single' %}">
                               Read more
                               <i class="ion-android-arrow-dropright"></i>
                             </a>
@@ -507,14 +516,14 @@
                             <h6><a href="#">{{popular.movie_title}}</a></h6>
                             <p>
                               <i class="ion-android-star"></i
-                              ><span>{{popular.lower_rating}}</span> / {{popular.upper_rating}}
+                              ><span>{{popular.lower_rating}}</span> /
+                              {{popular.upper_rating}}
                             </p>
                           </div>
                         </div>
                       </div>
 
                       {% endfor %}
-                      
                     </div>
                   </div>
                 </div>
@@ -534,7 +543,7 @@
                             />
                           </div>
                           <div class="hvr-inner">
-                            <a href="{% url tv.anchor_url %}">
+                            <a href="{% url 'movie_single' %}">
                               Read more
                               <i class="ion-android-arrow-dropright"></i>
                             </a>
@@ -543,14 +552,14 @@
                             <h6><a href="#">{{tv.movie_title}}</a></h6>
                             <p>
                               <i class="ion-android-star"></i
-                              ><span>{{tv.lower_rating}}</span> / {{tv.upper_rating}}
+                              ><span>{{tv.lower_rating}}</span> /
+                              {{tv.upper_rating}}
                             </p>
                           </div>
                         </div>
                       </div>
 
                       {% endfor %}
-                      
                     </div>
                   </div>
                 </div>
@@ -630,11 +639,11 @@
               </div>
               <div class="slider-nav-2 thumb-ft">
                 <!-- DB -->
-                 {% for item in trailer_items %}
+                {% for item in trailer_items %}
                 <div class="item">
                   <div class="trailer-img">
                     <img
-                      src="static/{{ item.img_src }}"
+                      src="{% static item.img_src %}"
                       alt="{{ item.img_alt}}"
                       width="{{ item.img_width }}"
                       height="{{ item.img_height }}"
@@ -646,7 +655,6 @@
                   </div>
                 </div>
                 {% endfor %}
-           
               </div>
             </div>
           </div>
@@ -682,8 +690,7 @@
                       <img
                         src="{% static featured_news.img_src %}"
                         alt="{{ featured_news.img_alt }}"
-                        width="{{ featured_news.img_width }}"
-                        height="{{ featured_news.img_height }}"
+                        style="width: {{ featured_news.img_width }}px; height: {{ featured_news.img_height }}px;"
                       />
                       <div class="blog-it-infor">
                         <!-- DB -->
@@ -801,12 +808,28 @@
               Subscribe to our newsletter system now <br />
               to get latest news from us.
             </p>
-            <form action="#">
-              <input type="text" placeholder="Enter your email..." />
+            <form
+              id="newsletter-form"
+              method="post"
+              action="{% url 'newsletter' %}"
+            >
+              {% csrf_token %}
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email..."
+              />
             </form>
-            <a href="#" class="btn"
-              >Subscribe now <i class="ion-ios-arrow-forward"></i
-            ></a>
+            <a
+              href="#"
+              class="btn"
+              onclick="
+                document.getElementById('newsletter-form').submit();
+                return false;
+              "
+            >
+              Subscribe now <i class="ion-ios-arrow-forward"></i>
+            </a>
           </div>
         </div>
       </div>

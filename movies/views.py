@@ -53,3 +53,13 @@ def index(request):
 
 def movie_single(request):
     return render(request, 'moviesingle.html')
+
+
+def newsletter(request):
+    email = request.POST.get('email')
+
+    context = {
+        'email': email
+    }
+
+    return render(request, 'newsletter.html', context)
