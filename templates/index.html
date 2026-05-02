@@ -1,4 +1,5 @@
-{% load static %} {% load string_extras %}
+{% load static %}
+{% load string_extras %}
 <!doctype html>
 <!--[if IE 7]>
 <html class="ie ie7 no-js" lang="en-US">
@@ -360,7 +361,7 @@
               </div>
               <div class="title-in">
                 <div class="cate">
-                  {% for genre in movieItem.movie_genre|lower|split:", " %} 
+                  {% for genre in movieItem.movie_genre|lower|split:", " %}
                   {% if genre == "sci-fi" %}
                   <span class="blue"><a href="#">{{ genre }}</a></span>
                   {% elif genre == "action" %}
@@ -418,7 +419,7 @@
                             />
                           </div>
                           <div class="hvr-inner">
-                            <a href="{{ movieItem.anchor_url }}">
+                            <a href="{% url 'movie_single' %}">
                               Read more
                               <i class="ion-android-arrow-dropright"></i>
                             </a>
@@ -430,8 +431,7 @@
                               >
                             </h6>
                             <p>
-                              <i class="ion-android-star"></i
-                              ><span>{{ movieItem.lower_rating }}</span> /{{ movieItem.upper_rating }}
+                              <i class="ion-android-star"></i><span>{{ movieItem.lower_rating }}</span> /{{ movieItem.upper_rating }}
                             </p>
                           </div>
                         </div>
@@ -456,7 +456,7 @@
                             />
                           </div>
                           <div class="hvr-inner">
-                            <a href="{{ movieItem.anchor_url }}">
+                            <a href="{% url 'movie_single' %}">
                               Read more
                               <i class="ion-android-arrow-dropright"></i>
                             </a>
@@ -468,8 +468,7 @@
                               >
                             </h6>
                             <p>
-                              <i class="ion-android-star"></i
-                              ><span>{{ movieItem.lower_rating }}</span> /{{ movieItem.upper_rating }}
+                              <i class="ion-android-star"></i><span>{{ movieItem.lower_rating }}</span> /{{ movieItem.upper_rating }}
                             </p>
                           </div>
                         </div>
@@ -508,7 +507,7 @@
                             />
                           </div>
                           <div class="hvr-inner">
-                            <a href="{{ popular.anchor_url }}">
+                            <a href="{% url 'movie_single' %}">
                               Read more
                               <i class="ion-android-arrow-dropright"></i>
                             </a>
@@ -517,7 +516,8 @@
                             <h6><a href="#">{{popular.movie_title}}</a></h6>
                             <p>
                               <i class="ion-android-star"></i
-                              ><span>{{popular.lower_rating}}</span> / {{popular.upper_rating}}
+                              ><span>{{popular.lower_rating}}</span> /
+                              {{popular.upper_rating}}
                             </p>
                           </div>
                         </div>
@@ -543,7 +543,7 @@
                             />
                           </div>
                           <div class="hvr-inner">
-                            <a href="{{ tv.anchor_url }}">
+                            <a href="{% url 'movie_single' %}">
                               Read more
                               <i class="ion-android-arrow-dropright"></i>
                             </a>
@@ -552,7 +552,8 @@
                             <h6><a href="#">{{tv.movie_title}}</a></h6>
                             <p>
                               <i class="ion-android-star"></i
-                              ><span>{{tv.lower_rating}}</span> / {{tv.upper_rating}}
+                              ><span>{{tv.lower_rating}}</span> /
+                              {{tv.upper_rating}}
                             </p>
                           </div>
                         </div>
@@ -642,7 +643,7 @@
                 <div class="item">
                   <div class="trailer-img">
                     <img
-                      src="static/{{ item.img_src }}"
+                      src="{% static item.img_src %}"
                       alt="{{ item.img_alt}}"
                       width="{{ item.img_width }}"
                       height="{{ item.img_height }}"
@@ -807,17 +808,28 @@
               Subscribe to our newsletter system now <br />
               to get latest news from us.
             </p>
-              <form id="newsletter-form" method="post" action="{% url 'newsletter' %}">
-                {% csrf_token %}
-                <input type="email" name="email" placeholder="Enter your email..." />
-              </form>
-              <a
-                href="#"
-                class="btn"
-                onclick="document.getElementById('newsletter-form').submit(); return false;"
-              >
-                Subscribe now <i class="ion-ios-arrow-forward"></i>
-              </a>
+            <form
+              id="newsletter-form"
+              method="post"
+              action="{% url 'newsletter' %}"
+            >
+              {% csrf_token %}
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email..."
+              />
+            </form>
+            <a
+              href="#"
+              class="btn"
+              onclick="
+                document.getElementById('newsletter-form').submit();
+                return false;
+              "
+            >
+              Subscribe now <i class="ion-ios-arrow-forward"></i>
+            </a>
           </div>
         </div>
       </div>
