@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 # from .models import SocialLink, Tweet, Advertisement
 from .models import (
     SocialLink,
@@ -53,3 +53,13 @@ def index(request):
 
 def movie_single(request):
     return render(request, 'moviesingle.html')
+
+
+def newsletter(request):
+    email = request.POST.get('email')
+
+    context = {
+        'email': email
+    }
+
+    return render(request, 'newsletter.html', context)
